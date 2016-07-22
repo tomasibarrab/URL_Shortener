@@ -1,0 +1,94 @@
+// Asciidoctor Source
+// Nearsoft Ruby Stage 3, Task Interview
+//
+// Original authors:
+// - Gerardo Galíndez
+// - Pastorinni Ochoa
+//
+// Last updated: April 25, 2016 (Mexico City)
+// Notes:
+//   Compile with: $ asciidoctor README.adoc
+
+= Shortener URL
+[Stage 3: Rails]
+:toc:
+:showtitle:
+
+TL;DR; Write a URL Shortener that transforms URLs from short to full path and
+the other way around. Yes, like http://bit.ly/[bit.ly].
+
+Little Timmy became a pro at the software writing thing. During a random
+musing while coding in the bathroom, he invented a service called Chirper™ that
+lets you post 140 chars of whatever you want to say.
+
+Cool, huh?
+
+In this stage, you will code `sho.rt` which is a URL shortener API for Little
+Timmy's brand-new, razor-edge, super-powerful, immensely-powerful, gluten-free
+micro messaging service called Chirper. It compresses links and redirects you can
+write more shit into a single message.
+
+The reason? 140 chars is too tight for sharing URLs and you really want to use
+Chiper™, before it becomes cool and becomes widespread.
+
+You're a genius. Little Timmy would be proud.
+
+== Requirements
+
+. Add `127.0.0.1 sho.rt` to your `/etc/hosts`.
+. Run your server as `$ sudo rails server -p 80`.
+. You can now access your service as `sho.rt/`
+. An http client. Instructions are available for `curl` 'cause it's hardcore.
+
+== Tasks
+
+You start off with a base Rails project that needs everything you're going to
+need. Feel free to add anything.
+
+TIP: Don't get carried away. You really want to start coding _ASAP_.
+
+The acceptance requirements are:
+
+. A *GET* endpoint that retrieves the full URL and redirects to it.
+. A *POST* endpoint that stores a new URL and yields it's shortened id.
+. This is URL shortening, so make sure your root path handles the translation
+  (so you can `http://sho.rt/8sd2iy`)
+. This is Rails, so #TDD and #PrettySpecs and #WriteEmAll. Go kick ass.
+
+== Pitfalls
+
+. This is *Happy-path only*. Don't worry about collisions.
+. Don't worry too much about response formatting, you're only meant to yield a
+  single value.
+. Make sure you validate around corners...
+. and test around them too.
+. Remember best practices never killed anyone.
+. Keep it as simple as possible. If you're writing more than a few lines per
+  method, take a step back and make sure you're not adding extra complexity.
+
+== Tips and tricks
+
+Want to test manually?
+
+[source,shell]
+----
+$ curl -H "Content-Type: application/json" -X POST -d '{<JSON Content>}' sho.rt/<PATH>
+----
+
+Some useful stuff:
+
+- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes[HTTP Codes]
+- https://www.relishapp.com/rspec/rspec-rails/docs/controller-specs[RSpec matchers]
+- http://ruby-doc.org/stdlib-2.3.0/libdoc/uri/rdoc/URI.html[URI Ruby docs]
+
+You *can*:
+
+- Add any dependencies (except for shortening services)
+- Use any HTTP client
+
+You *cannot*:
+
+- Use a gem that allows you to create a short URL like:
+https://github.com/nas/url_shortener[`url_shortener`],
+https://github.com/jpmcgrath/shortener[`shortener`], or
+https://github.com/zigotto/googl[`googl`].

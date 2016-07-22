@@ -1,0 +1,17 @@
+<h1>Listing Urls</h1>
+<h2>Bold characters are the endpoints (short urls) just use it as:</h2>
+<h3>localhost:3000/*your_endpoint*</h3>
+<%= link_to 'New url', new_url_path %>
+<table>
+  <tr>
+    <th>Long Urls</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @urls.each do |url| %>
+    <tr>
+      <td><%= url.urlLong %></td>
+      <td style="font-weight:bold"><%= url.urlShort %></td>
+    </tr>
+  <% end %>
+</table>
